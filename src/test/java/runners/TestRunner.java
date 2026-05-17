@@ -2,12 +2,13 @@ package runners;
 
 
 import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 //@RunWith(Cucumber.class)                             //Use Cucumber to run the tests
 
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = "stepDefinitions",
+        glue = {"stepDefinations","hooks"},
         tags = "@smoke",
         plugin = {"pretty", "html:target/cucumber-reports.html",
                 "json:target/cucumber-reports.json",
@@ -15,7 +16,7 @@ import io.cucumber.testng.CucumberOptions;
         monochrome = true
 )
 
-public class TestRunner {
-
+public class TestRunner extends AbstractTestNGCucumberTests{
 
 }
+

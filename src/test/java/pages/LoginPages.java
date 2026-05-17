@@ -1,22 +1,15 @@
-package pages.locators;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.actions.LoginPageActions;
 
-public class LoginPageLocators {
+public class LoginPages {
 
     WebDriver driver;
 
-    public LoginPageLocators(WebDriver driver) {
-        this.driver = driver;
-
-        PageFactory.initElements(driver, this);  // Initialize the WebElements in this class using PageFactory
-    }
-
-    @FindBy(xpath = "//span[normalize-space()='Access Learning Materials']")
+    @FindBy(xpath = "//*[@id=\"app-root\"]/nav/div[1]/div[3]/button/span[2]")
     public WebElement loginButton;
 
     @FindBy(id = "login-email")
@@ -28,4 +21,27 @@ public class LoginPageLocators {
     @FindBy(id = "login-submit")
     public WebElement loginSubmitButton;
 
+
+    public LoginPages(WebDriver driver) {
+        this.driver = driver;
+
+        PageFactory.initElements(driver, this);  // Initialize the WebElements in this class using PageFactory
+    }
+
+
+    public void clickLoginButtonOnHomePage() {
+        loginButton.click();
+    }
+
+    public void enterUsername(String username){
+        usernameField.sendKeys(username);
+    }
+
+    public void enterPassword(String password){
+        passwordField.sendKeys(password);
+    }
+
+    public void clickLoginButton(){
+        loginSubmitButton.click();
+    }
 }

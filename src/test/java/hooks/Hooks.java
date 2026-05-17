@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import utils.BrowserFactory;
 
 public class Hooks {
 
@@ -12,12 +13,11 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        // Initialize WebDriver and perform any setup actions
-        System.out.println("Setting up the test environment...");
-        // Example: driver = new ChromeDriver();
+
+        driver = BrowserFactory.startBrowser();
     }
 
-    @After
+    /*@After
     public void tearDown(Scenario scenario) {
 
         if (scenario.isFailed()) {
@@ -26,6 +26,8 @@ public class Hooks {
             byte[] screenshot = ts.getScreenshotAs(org.openqa.selenium.OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
-         driver.quit();
-    }
+        if(driver != null) {
+            driver.quit();
+        }
+    }*/
 }

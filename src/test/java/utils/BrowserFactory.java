@@ -10,7 +10,10 @@ public class BrowserFactory {
 
     static WebDriver driver;
 
-    public static WebDriver startBrowser (String browserName, String url) {
+    public static WebDriver startBrowser () {
+
+        String browserName = ConfigReader.getBrowser();
+        String url = ConfigReader.getUrl();
 
         if (browserName.equalsIgnoreCase("chrome")) {
             driver = new ChromeDriver();
@@ -23,12 +26,19 @@ public class BrowserFactory {
         }
         driver.manage().window().maximize();
         driver.get(url);
+
         return driver;
     }
-    public void closeBrowser() {
-        if (driver != null) {                                            // Check if the driver is not null before attempting to quit
+    public static WebDriver getDriver() {
+
+        return driver;
+    }
+
+
+    public static void closeBrowser() {
+        if (driver != null) {
             driver.quit();
-            driver = null;                                                   // Reset the driver to null after quitting
+            driver = null;
         }
     }
 }
